@@ -36,9 +36,6 @@ set(compiler_is_msvc "$<CXX_COMPILER_ID:MSVC>")
 set(compiler_is_gnu "$<CXX_COMPILER_ID:GNU>")
 set(compiler_is_clang "$<OR:$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:Clang>>")
 
-find_package(fmt CONFIG REQUIRED)
-find_package(OpenSSL REQUIRED)
-
 file(GLOB_RECURSE
   project_sources
     CONFIGURE_DEPENDS
@@ -48,6 +45,7 @@ file(GLOB_RECURSE
 
 add_executable(${PROJECT_NAME}
   ${project_sources}
+        src/functions.h
 )
 
 include(compiler-warnings)
@@ -96,10 +94,10 @@ target_include_directories(${PROJECT_NAME}
   PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
+find_package(OpenCV CONFIG REQUIRED)
+
 target_link_libraries(${PROJECT_NAME}
-  PRIVATE fmt::fmt
-  PRIVATE OpenSSL::SSL
-  PRIVATE OpenSSL::Crypto
+        opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs
 )
 
 if (AUTOFORMAT_SRC_ON_CONFIGURE MATCHES ON)

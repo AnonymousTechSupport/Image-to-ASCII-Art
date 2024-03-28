@@ -1,25 +1,37 @@
-#include <cstdint>
 #include <iostream>
-#include <string_view>
+#include <thread>
+#include <fstream>
+#include <opencv2/opencv.hpp>
+#include <functions.h>
 
-#include <fmt/color.h>
-#include <fmt/format.h>
-#include <fmt/std.h>
-#include <openssl/crypto.h>
-
-int main(int argc, char** argv)
+int main()
 {
-    constexpr std::string_view hi{ "hello world" };
-    fmt::print(fmt::emphasis::blink | fmt::fg(fmt::color::coral), "{}\n", hi);
 
-    const uint32_t ssl_major{ OPENSSL_version_major() };
-    const uint32_t ssl_minor{ OPENSSL_version_minor() };
-    const uint32_t ssl_patch{ OPENSSL_version_patch() };
+    std::string path;
+    std::cout << "Enter the path to the image: ";
+    std::cin >> path;
 
-    fmt::print(fmt::emphasis::underline | fmt::fg(fmt::color::beige),
-               "Using OpenSSL Version: {}.{}.{}\n", ssl_major, ssl_minor, ssl_patch);
+    if(!isImagePahValid(path))
+    {
+        std::cout << "The path to the image is invalid, please try again.\n";
+        return EXIT_FAILURE;
+    }
 
-    std::cin.get();
+    cv::Mat image;
+    image = cv::imread(path, cv::IMREAD_GRAYSCALE);
 
-    return 0;
+    // If there is image data, display the image
+    // Resize the image to half its size
+    cv::Size size(image.cols/2, image.rows/2);
+    cv::resize(image, image, size);
+
+    if (isDataValid(image))
+    {
+        std::string asciiArt = generateAsciiArt(image);
+        writeToFile(asciiArt);
+        std::cout << "Program successfully created your ASCII Art, check the directory of which you executed the program for the output file.\n";
+    }
+
+
+    return EXIT_SUCCESS;
 }

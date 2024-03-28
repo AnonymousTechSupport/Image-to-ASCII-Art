@@ -1,0 +1,20 @@
+"C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2023.3.4/bin/ninja/win/x64/ninja.exe" -G Ninja -S C:\Users\corbn\CLionProjects\ImageToAscii -B C:\Users\corbn\CLionProjects\ImageToAscii\cmake-build-debug
+Found VCPKG Executable: C:/Users/corbn/CLionProjects/ImageToAscii/extern/vcpkg/vcpkg.exe
+-- Running vcpkg install
+error: in triplet x64-windows: Unable to find a valid Visual Studio instance
+Could not locate a complete Visual Studio instance
+The following paths were examined for Visual Studio instances:
+  C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Auxiliary/Build\vcvarsall.bat
+
+-- Running vcpkg install - failed
+CMake Error at extern/vcpkg/scripts/buildsystems/vcpkg.cmake:899 (message):
+  vcpkg install failed.  See logs for more information:
+  C:\Users\corbn\CLionProjects\ImageToAscii\cmake-build-debug\vcpkg-manifest-install.log
+Call Stack (most recent call first):
+  C:/Program Files/JetBrains/CLion 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:148 (include)
+  CMakeLists.txt:17 (project)
+
+
+CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+-- Configuring incomplete, errors occurred!

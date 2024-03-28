@@ -1,3 +1,7 @@
+# Project
+
+A C++ Project I created to learn the OpenCV library by creating a program that reads each pixel col/row and generates an ASCII art representation of that image from a path you specify in a terminal
+
 # CMake VCPKG C++ Template
 
 Basic example CMake + VCPKG C++ template to easily build and debug a project easily with simple 3rd party library package management.
